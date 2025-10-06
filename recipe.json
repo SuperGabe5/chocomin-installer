@@ -1,6 +1,6 @@
 {
     "log_file": "/etc/vanilla/installer.log",
-    "distro_name": "Vanilla OS",
+    "distro_name": "ChocoMATE (Alpha 1)",
     "distro_logo": "org.vanillaos.Installer-flower",
     "images": {
         "default": "ghcr.io/supergabe5/mate:chocomate",
@@ -18,7 +18,7 @@
     "tour": {
         "welcome": {
             "resource": "/org/vanillaos/Installer/assets/welcome.png",
-            "title": "Installing Vanilla OS",
+            "title": "Installing ChocoMATE",
             "description": "The process could take a few minutes, please be patient"
         },
         "control": {
