@@ -31,16 +31,15 @@ jobs:
     - name: Install needed packages
       run: apt update && apt install dpkg-dev build-essential debhelper python3 meson libadwaita-1-dev libgnome-desktop-4-dev libgweather-4-dev gettext desktop-file-utils make libjpeg-dev libnm-dev libnma-dev libnma-gtk4-dev -y
 
-# ... (other steps)
-
-    - name: Create output directory
-      run: mkdir -p ./build-output
-
     - name: Build debian package
+      # The build is performed in a subdirectory
       run: |
-        dpkg-buildpackage --no-sign --build-dir=./build-output
-        mv ./build-output/*.deb ./build-output/vanilla-installer.deb
-
+        mkdir build-dir
+        cp -r ./* ./build-dir
+        cd build-dir
+        dpkg-buildpackage --no-sign
+        mv ../*.deb ../vanilla-installer.deb
+      
     - uses: softprops/action-gh-release@v1
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
@@ -48,5 +47,4 @@ jobs:
         prerelease: true
         name: "Continuous Build"
         files: |
-          ./build-output/vanilla-installer.deb
-
+          ./vanilla-installer.deb
